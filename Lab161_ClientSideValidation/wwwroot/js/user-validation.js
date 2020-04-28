@@ -59,7 +59,7 @@ function validateEmail() {
 
     if (!email || email.length < 5) {
         warning += 'Email is empty or too short. ';
-    } else if (email.length > 20) {
+    } else if (email.length > 40) {
         warning += 'Email is too long. ';
     }
 
@@ -77,6 +77,8 @@ function validateEmail() {
 
 function validatePassword() {
     let name = document.querySelector("#Password").value;
+    let numPattern = /[0-9]/
+    let symPattern = /[^\w\s]/
     let warning = '';
 
     if (!name || name.length < 3) {
@@ -84,6 +86,22 @@ function validatePassword() {
     } else if (name.length > 30) {
         warning += 'Password is too long. ';
     }
+
+    if (name.toUpperCase() === name) {
+        warning += 'Password does not contain a lower case. ';
+    }
+
+    if (name.toLowerCase() === name) {
+        warning += 'Password does not contain a upper case. ';
+    }
+
+    if (!name.match(numPattern) || !name) {
+        warning += 'Password does not contain a number. ';
+    } 
+
+    if (!name.match(symPattern) || !name) {
+        warning += 'Password does not contain a symbol. ';
+    } 
 
     if (warning == '') {
         document.querySelector("#PasswordLabel").classList.remove('red');
