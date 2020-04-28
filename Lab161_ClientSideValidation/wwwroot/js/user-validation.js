@@ -13,7 +13,7 @@ function validateFirstName() {
     let name = document.querySelector("#FirstName").value;
     let warning = '';
 
-    if (!name || name.length < 3) {
+    if (!name || name.length < 2) {
         warning += 'First Name is empty or too short. ';
     } else if (name.length > 30) {
         warning += 'First Name is too long. ';
@@ -35,7 +35,7 @@ function validateLastName() {
     let name = document.querySelector("#LastName").value;
     let warning = '';
 
-    if (!name || name.length < 3) {
+    if (!name || name.length < 2) {
         warning += 'Last Name is empty or too short. ';
     } else if (name.length > 30) {
         warning += 'Last Name is too long. ';
@@ -55,13 +55,13 @@ function validateLastName() {
 
 function validateEmail() {
     let email = document.querySelector("#Email").value;
+    let emailPattern = /\w{2,}@\w{2,}.\w{2,}/
     let warning = '';
 
-    if (!email || email.length < 5) {
-        warning += 'Email is empty or too short. ';
-    } else if (email.length > 40) {
-        warning += 'Email is too long. ';
-    }
+    if (!email.match(emailPattern)) {
+        warning += 'Invalid email. ';
+    } 
+
 
     if (warning == '') {
         document.querySelector("#EmailLabel").classList.remove('red');
